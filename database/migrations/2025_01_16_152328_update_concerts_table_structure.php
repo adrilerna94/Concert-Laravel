@@ -31,7 +31,14 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('concerts', function (Blueprint $table) {
-            //
+            // eliminar varias columnas a la vez
+            $table->dropColumn([
+                'name',
+                'start_date',
+                'end_date',
+                'capacity',
+                'tickets_sold'
+            ]);
         });
     }
 };
