@@ -19,6 +19,7 @@
 
 - **Una banda puede tocar en varios conciertos** (relación muchos a muchos).
 - **Un concierto puede tener varias bandas**.
+- **Ten en cuenta que una banda puede tocar en varios conciertos, y un concierto tiene muchas bandas. Muestra los datos de las relaciones al acceder a los métodos "show" y "index"**.
 
 ## 3. Controladores y Rutas
 
