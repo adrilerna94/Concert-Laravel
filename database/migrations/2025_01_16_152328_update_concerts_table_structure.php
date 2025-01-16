@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('name', 20)->nullable(false)->unique();
             $table->timestamp('start_date')->useCurrent(); // useCurrent() : Default timestamp actual
             $table->timestamp('end_date'); // si no indicamos nada es required
-            $table->integer('capacity')->default(100)->unsigned(); // con default no necesario indicar nullable()
+            $table->integer('capacity')->default(10000)->unsigned(); // con default no necesario indicar nullable()
             $table->integer('tickets_sold')->unsigned(); // unsigned() ➡️ valores + positivos
         });
     }
