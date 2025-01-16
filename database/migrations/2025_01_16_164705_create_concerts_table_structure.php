@@ -19,10 +19,23 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('concerts', function (Blueprint $table) {
-            $table->string('name', 20)->nullable(false)->unique(); // si no indico PK asume unique como PK
+
+            // Definir la columna 'concert_id' como la clave primaria
+            $table->bigInteger('concert_id')->unsigned()->primary();
+
+            // La columna 'name' es única, pero no es la clave primaria
+            $table->string('name', 20)->nullable(false)->unique();
+
+            // La columna 'start_date' con valor predeterminado como fecha y hora actual
             $table->timestamp('start_date')->useCurrent(); // useCurrent() : Default timestamp actual
+
+            // La columna 'end_date' con valor predeterminado como fecha y hora actual
             $table->timestamp('end_date')->useCurrent(); // obligatorio valor default timestamp
+
+            // Capacidad del concierto con valor por defecto
             $table->integer('capacity')->default(10000)->unsigned(); // con default no necesario indicar nullable()
+
+            // Número de entradas vendidas, solo valores positivos
             $table->integer('tickets_sold')->unsigned(); // unsigned() ➡️ valores + positivos
         });
     }
