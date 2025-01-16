@@ -46,7 +46,7 @@ return new class extends Migration
     public function down(): void
     {
         // Eliminar la tabla 'concerts'
-        Schema::drop('concerts');
+        Schema::dropIfExists('concerts');
     }
 };
 
