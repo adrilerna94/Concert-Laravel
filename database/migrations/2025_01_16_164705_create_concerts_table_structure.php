@@ -20,8 +20,11 @@ return new class extends Migration
     {
         Schema::create('concerts', function (Blueprint $table) {
 
-            // Definir la columna 'concert_id' como la clave primaria
-            $table->bigInteger('concert_id')->unsigned()->primary();
+            // PK 'concert_id' BIGINT SIN SIGNO  autoincremental
+           // $table->bigInteger('concert_id')->unsigned()->primary()->increments();
+
+            // ⚡Forma compacta ⚡ BIGINT - UNSIGNED- PK
+            $table->bigIncrements('concert-id');
 
             // La columna 'name' es única, pero no es la clave primaria
             $table->string('name', 20)->nullable(false)->unique();
