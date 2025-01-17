@@ -32,10 +32,18 @@ return new class extends Migration
         Schema::create('concert_band', function (Blueprint $table) {
 
             // 📌 forma compacta ➡️ foreignId()📌
+
+            /* Genera solo 1a llave en phpmyadmin
+                ➡️ PK 🔑
+                ➡️ ❓: porque el nombre FK "concert_id" en concert_band es 🟰 PK "concert_id" en concerts
+            */
             $table->foreignId('concert_id')->constrained('concerts', 'concert_id')
                   ->onDelete('cascade')
                   ->onUpdate('cascade');
-
+            /* Genera 2 llaves en phpmyadmin
+                ➡️ PK 🔑
+                ➡️ FK 🔧 : porque el nombre band_id FK en concert_band es diferente a PK id en bands
+            */
             $table->foreignId('band_id')->constrained() // asume el nombre tabla y su id con ($table->id() en bands)
                   ->onDelete('cascade')
                   ->onUpdate('cascade');
@@ -73,7 +81,8 @@ return new class extends Migration
 
     📌 **`foreign()`**:
     - Forma tradicional y más **flexible**.
-    - Te permite definir **manualmente** las columnas de las claves foráneas y primarias, útil si no sigues las convenciones de Laravel.
+    - Te permite definir **manualmente** las columnas de las claves foráneas y primarias,
+    útil si no sigues las convenciones de Laravel.
     - **Mayor control** sobre las relaciones, especialmente en nombres personalizados de columnas.
 
     ✨ Ejemplo:
@@ -84,7 +93,8 @@ return new class extends Migration
 
     🛠️ **Acciones**:
     - **`onDelete('cascade')`**: Elimina registros relacionados si se elimina un registro en la tabla principal.
-    - **`onUpdate('cascade')`**: Actualiza automáticamente registros relacionados si se actualiza un registro en la tabla principal.
+    - **`onUpdate('cascade')`**: Actualiza automáticamente registros relacionados
+    si se actualiza un registro en la tabla principal.
 
     👴🏼 FORMA TRADICIONAL ➡️ foreign
        1) crear columna concert_id asignandole un tipo
@@ -95,4 +105,13 @@ return new class extends Migration
                   ->on('concerts') // nombre tabla relacionada (concerts)
                   ->onUpdate('cascade') // si se actualiza un registro concert_band también en concerts
                   ->onDelete('cascade');
+
+        // 📌 forma compacta ➡️ foreignId()📌
+            $table->foreignId('concert_id')->constrained('concerts', 'concert_id')
+                  ->onDelete('cascade')
+                  ->onUpdate('cascade');
+
+            $table->foreignId('band_id')->constrained() // asume el nombre tabla y su id con ($table->id() en bands)
+                  ->onDelete('cascade')
+                  ->onUpdate('cascade');
 */
