@@ -24,7 +24,7 @@ return new class extends Migration
            // $table->bigInteger('concert_id')->unsigned()->primary()->increments();
 
             // ⚡Forma compacta ⚡ BIGINT - UNSIGNED- PK
-            $table->bigIncrements('concert-id');
+            $table->bigIncrements('concert_id');
 
             // La columna 'name' es única, pero no es la clave primaria
             $table->string('name', 20)->nullable(false)->unique();
